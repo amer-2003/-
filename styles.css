@@ -1,0 +1,389 @@
+body {
+    margin: 0;
+    font-family: "Playpen Sans Arabic", cursive;
+    font-size: 30px;
+    background: #ffffff;
+    color: #111;
+    background: linear-gradient(to bottom, #4caeef, #cd19ec);
+}
+
+.container{
+  width: min(520px, 100%);
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.tagline {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #000000;
+}
+
+h1 {
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+main {
+    padding: 20px;
+}
+
+button{
+  width: 100%;
+  padding: 18px;
+  font-size: 18px;
+
+  background: #22c55e;
+  color: white;
+  border: none;
+
+  border-radius: 50px;   /* هذا السر 🔥 */
+  cursor: pointer;
+}
+
+nav{
+  background: #f394e8;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  padding: 10px;
+}
+
+nav ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+}
+
+nav a{
+  text-decoration: none;
+  color: #111;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;  /* أخلى أوضح */
+}
+nav a:hover{
+  background: #e6e6e6;
+}
+
+nav ul li{
+  padding: 0 12px;
+  position: relative;
+}
+
+nav ul li:not(:last-child)::after{
+  content: "";
+  position: absolute;
+  left: 0;   /* لأن الصفحة RTL */
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18px;
+  width: 1px;
+  background: black;
+}
+
+.section-title{
+  font-size: 20px;
+  margin: 20px 0 12px;
+  text-align: center;
+}
+
+.products-grid{
+  display: grid;
+  grid-template-columns: 1fr; /* افتراضي عمود واحد */
+  gap: 12px;
+}
+
+@media (min-width: 380px){
+  .products-grid{
+    grid-template-columns: 1fr 1fr; /* عمودين */
+  }
+}
+
+.product-card{
+  background: #e9d5ff !important; 
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.product-img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: 140px;        /* مهم: يقلل الطول */
+  object-fit: contain;
+  background: #f6f6f6;
+  border-radius: 12px;
+}
+
+.product-body{
+  padding: 10px;
+  text-align: center;
+}
+
+.product-name{ margin: 0 0 6px; font-size: 18px; }
+.product-meta{ margin: 0 0 8px; color: #555; font-size: 14px; }
+.price{ margin: 0 0 10px; font-weight: 700; }
+
+.price{
+  white-space: nowrap;   /* يمنع نزول النص لسطر جديد */
+  font-size: 18px;       /* خفف الحجم إذا كبير جداً */
+  margin: 8px 0 10px;
+} 
+
+.details-btn{
+  width: 100%;
+  padding: 12px;
+  color: #111;
+  border: 1px solid #bbb;
+  background: #f2f2f2;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* شاشات أكبر: عمودين */
+@media (min-width: 700px){
+  .products-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===== Modal ===== */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none; /* مخفي */
+  z-index: 999;
+}
+
+.modal.open{
+  display: block;
+}
+
+.modal__overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+}
+
+/* زر الإغلاق واضح وثابت */
+.modal__close{
+  position: sticky;
+  top: 0;
+  width: 100%;
+  border: 0;
+  background: #f2f2f2;
+  padding: 12px 0;
+  border-radius: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+}
+.modal__close{
+  position: absolute;
+  top: 10px;
+  left: 10px; /* لأن الصفحة RTL */
+  border: 0;
+  background: #eee;
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+/* الصورة الرئيسية: ما تقص + حجم منطقي */
+.modal__images img{
+  height: 220px;          /* قللناها */
+  object-fit: contain;    /* بدل cover حتى ما تنقص */
+  background: #f6f6f6;
+}
+
+/* المصغرات */
+.modal__thumbs img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+
+.modal__thumbs img{
+  width: 70px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.modal__info{
+  text-align: right;
+}
+
+.modal__thumbs img.active{
+  border-color: #000;
+}
+
+.muted{ color: #666; }
+
+.product-card{
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+#modalName{
+  margin: 8px 0 6px;
+  font-size: 26px;
+}
+
+#modalCode, #modalPrice{
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+#modalDesc{
+  margin-top: 10px;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* للشاشات الكبيرة نخليها عمودين */
+@media (min-width: 800px){
+  .modal__content{
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+  .modal__close{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: auto;
+    padding: 8px 12px;
+  }
+}
+/* ===== Modal FIX ===== */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;          /* أعلى من كل شي */
+}
+
+.modal.open{
+  display: block;
+}
+
+.modal__overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+}
+
+/* المحتوى نفسه */
+.modal__content{
+  position: relative;
+  z-index: 10000;
+  width: min(520px, 92%);
+  margin: 24px auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px;
+  max-height: 85vh;
+  overflow: auto;
+}
+
+/* زر الإغلاق - خليّه واضح */
+.modal__close{
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #f2f2f2;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 0;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+/* الصورة الرئيسية */
+.modal__images img{
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: #f6f6f6;
+  border-radius: 12px;
+}
+
+/* المصغرات */
+.modal__thumbs{
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.modal__thumbs img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+.modal__thumbs img.active{
+  border-color: #000;
+}
+body.modal-open{
+  overflow: hidden;
+}
+
+.social-icons{
+  background: white;
+  padding: 15px 25px;
+  display: inline-flex;      /* مهم جداً */
+  gap: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-radius: 50px;
+}
+
+/* حتى يجي بالنص */
+footer{
+  text-align: center;
+}
+
+.social-icons a{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  transition: 0.3s;
+}
+
+/* ألوان كل منصة */
+
+.social-icons a:nth-child(1){ background: #25D366; } /* واتساب */
+.social-icons a:nth-child(2){ background: #1877F2; } /* فيسبوك */
+.social-icons a:nth-child(3){ background: #9810d7; } /* انستغرام */
+.social-icons a:nth-child(4){ background: #0084FF; } /* ماسنجر */
+.social-icons a:nth-child(5){ background: #229ED9; } /* تلغرام */
+
+.social-icons a:hover{
+  transform: scale(1.1);
+}
